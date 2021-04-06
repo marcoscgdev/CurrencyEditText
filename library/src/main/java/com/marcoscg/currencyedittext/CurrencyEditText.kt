@@ -14,7 +14,7 @@ class CurrencyEditText : AppCompatEditText {
 
     private var locale: Locale? = null
     private var currency: Currency? = null
-
+    private var maxLength: Int = 30
     private var value = 0.0
 
     constructor(context: Context) : super(context)
@@ -35,7 +35,13 @@ class CurrencyEditText : AppCompatEditText {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) { }
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                val cleanString = s.toString().replace("[${currency?.symbol},.\\s]".toRegex(), "")
+                var cleanString = s.toString().replace("\\D+".toRegex(), "") // Get only digits
+
+                // If max length is exceeded, remove new digit
+                if (cleanString.length > maxLength) {
+                    cleanString = cleanString.substring(0, cleanString.length - 1)
+                }
+
                 val parsed = cleanString.toDouble()
 
                 value = parsed / 100
@@ -62,6 +68,17 @@ class CurrencyEditText : AppCompatEditText {
         if (selectionEnd != getEndingSelection()) {
             setSelection(getEndingSelection())
         }
+    }
+
+    fun setLocale(locale: Locale) {
+        this.locale = locale
+        currency = Currency.getInstance(locale)
+
+        setText((value * 100).toInt().toString())
+    }
+
+    fun setMaxLength(maxLength: Int) {
+        this.maxLength = maxLength + 2 // Add number of decimals
     }
 
     fun getNumericValue(): Double {
