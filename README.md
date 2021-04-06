@@ -6,16 +6,16 @@ An Android EditText with automatic currency formatting.
 
 ## Releases:
 
-#### Current release: 1.0.0.
+#### Current release: 1.0.1.
 
 You can see all the library releases [here](https://github.com/marcoscgdev/CurrencyEditText/releases).
 
 ---
 
 ## Screenshots
-<kbd><img src="https://raw.githubusercontent.com/marcoscgdev/CurrencyEditText/master/Screenshot_1617663066.png" width="350"></kbd>&nbsp;&nbsp;&nbsp;&nbsp;<kbd><img src="https://raw.githubusercontent.com/marcoscgdev/CurrencyEditText/master/Screenshot_1617663115.png" width="350"></kbd>
+<kbd><img src="https://raw.githubusercontent.com/marcoscgdev/CurrencyEditText/master/Screenshot_1617663066.png" width="250"></kbd>&nbsp;&nbsp;&nbsp;&nbsp;<kbd><img src="https://raw.githubusercontent.com/marcoscgdev/CurrencyEditText/master/Screenshot_1617663115.png" width="250"></kbd>
 
-Download the sample apk [here](https://github.com/marcoscgdev/CurrencyEditText/releases/download/1.0.0/app-debug.apk).
+Download the sample apk [here](https://github.com/marcoscgdev/CurrencyEditText/releases/download/1.0.1/app-debug.apk).
 
 ---
 
@@ -37,7 +37,7 @@ allprojects {
 Now add the dependency to your app build.gradle file:
 
 ```groovy
-implementation 'com.github.marcoscgdev:CurrencyEditText:1.0.0'
+implementation 'com.github.marcoscgdev:CurrencyEditText:1.0.1'
 ```
 
 ### Using the widget
@@ -53,6 +53,18 @@ implementation 'com.github.marcoscgdev:CurrencyEditText:1.0.0'
 
 ```kotlin
 val value = currencyEditText.getNumericValue()
+```
+
+### Using a custom locale
+
+```kotlin
+currencyEditText.setLocale(Locale.UK)
+```
+
+### Setting max number length
+
+```kotlin
+currencyEditText.setMaxLength(6)
 ```
 
 ---
